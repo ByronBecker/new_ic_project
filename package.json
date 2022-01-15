@@ -13,7 +13,9 @@
     "prebuild": "npm run copy:types",
     "start": "webpack serve --mode development --env development",
     "prestart": "npm run copy:types",
-    "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations"
+    "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --delete src/declarations",
+    "lint": "eslint --cache --fix --ext .js,.jsx,.ts,.tsx src/new_proj_assets/src",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@dfinity/agent": "0.10.2",
@@ -22,11 +24,24 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/redux-logger": "^3.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
     "assert": "2.0.0",
     "buffer": "6.0.3",
     "copy-webpack-plugin": "^9.0.1",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "events": "3.3.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.7",
+    "prettier": "^2.5.1",
     "process": "0.11.10",
     "stream-browserify": "3.0.0",
     "terser-webpack-plugin": "5.2.5",
@@ -45,9 +60,14 @@
   ],
   "dependencies": {
     "@dfinity/auth-client": "^0.10.2",
+    "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
   }
 }
