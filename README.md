@@ -1,4 +1,12 @@
-# new_proj
+# new_ic_project
+
+Modified the dfx starter project to include a TypeScript frontend with husky/lint-staged dev tooling.
+
+Added in Internet Identity authentication using @dfinity/agent, functioning locally but not yet tested on the main network.
+
+End modified README.md
+
+---
 
 Welcome to your new new_proj project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
 
